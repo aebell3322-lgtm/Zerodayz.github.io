@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD Jasmine 🎂🌸</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Mali:wght@400;600&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Audio -->
+    <audio id="bgMusic" loop>
+        <source src="sound/Zeroday01.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="clickSound">
+        <source src="sound/click.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="sakura-container" id="sakuraContainer"></div>
+
+    <!-- Music Toggle Button -->
+    <button id="musicToggle" class="music-heart" aria-label="Toggle Music">
+        <span>🎵</span>
+    </button>
+
+    <div class="content-wrapper">
+        <!-- Decor Hearts -->
+        <div class="decor-heart decor-1"><img src="img/IMG_1452.gif" alt="Heart Left"
+                onerror="this.src='https://placehold.co/100x100?text=L'"></div>
+        <div class="decor-heart decor-2"><img src="img/12.gif" alt="Heart Right"
+                onerror="this.src='https://placehold.co/100x100?text=R'"></div>
+
+        <div class="card">
+            <!-- Header -->
+            <h1 id="typewriterText" class="header-text"></h1>
+
+            <p class="subtext">ฉันหวังว่าวันนี้จะเป็นวันที่เต็มไปด้วยรอยยิ้มและความสนุก</p>
+
+            <div class="birthday-info">
+                <span>วันเกิด: 21 / 01 / 2569</span>
+                <span id="ageDisplay" class="age-text"></span>
+            </div>
+
+            <!-- Interaction -->
+            <div class="interaction-area">
+                <button id="btnStep1" class="btn pulse">กดตรงนี้เพื่อเซอร์ไพรส์ 🎁</button>
+                <button id="btnStep2" class="btn hidden">กดอีกทีนะ 🌸</button>
+                <button id="btnStep3" class="btn hidden">เซอร์ไพรส์สำหรับจัสมิน 💖</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,326 @@
+:root {
+    --bg-color: #fff0f5;
+    /* Lavender Blush */
+    --primary-color: #ffb7b2;
+    /* Soft Coral */
+    --text-color: #8b5a5b;
+    /* Dried Rose */
+    --white: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.9);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Mali', 'Kanit', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe3e3 100%);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    padding: 20px;
+}
+
+/* Background Animation */
+.sakura-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.sakura {
+    position: absolute;
+    background: #FFC0CB;
+    border-radius: 100% 0 100% 0;
+    opacity: 0.6;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+.content-wrapper {
+    z-index: 10;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+}
+
+/* Decorative Hearts */
+.decor-heart {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    z-index: 12;
+    animation: float 3s ease-in-out infinite;
+}
+
+.decor-heart img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    /* Heart shape clip-path */
+    clip-path: path("M40 70 L 10 40 Q 0 30 10 20 T 30 20 Q 40 30 40 40 Q 40 30 50 20 T 70 20 Q 80 30 70 40 Z");
+    /* Simplified clip path or mask better? Let's use simpler SVG path or mask for cross-browser reliability is ideal, 
+       but standard polygon is hard for curves. 
+       Let's use a simpler CSS trick or border-radius approach if clip-path is tricky. 
+       Actually, standard heart clip-path: */
+    clip-path: polygon(50% 88%, 0 40%, 15% 0, 50% 25%, 85% 0, 100% 40%);
+    /* Rounded polygon for 'pixel art' style heart, or use mask. 
+       Best pure CSS rounded heart uses ::before/::after. 
+       But we need to crop an IMAGE. 
+       Sol: Put image in background or use mask-image. */
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/></svg>");
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/></svg>");
+    mask-mode: alpha;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    background-color: pink;
+    /* Fallback */
+}
+
+/* Fallback for mask support */
+@supports not (mask-image: url('')) {
+    .decor-heart img {
+        border-radius: 50%;
+        /* Circle fallback */
+    }
+}
+
+.decor-1 {
+    top: -40px;
+    left: -20px;
+    animation-delay: 0s;
+    transform: rotate(-15deg);
+}
+
+.decor-2 {
+    top: -50px;
+    right: -20px;
+    animation-delay: 1.5s;
+    transform: rotate(15deg);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 30px;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(255, 183, 178, 0.3);
+    backdrop-filter: blur(10px);
+    border: 3px solid white;
+    position: relative;
+    z-index: 10;
+}
+
+/* Text */
+.header-text {
+    font-size: 2rem;
+    color: #e57373;
+    margin-bottom: 15px;
+    min-height: 80px;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+.subtext {
+    font-size: 1.1rem;
+    color: #8b5a5b;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+.birthday-info {
+    font-family: 'Kanit', sans-serif;
+    color: #a67b7c;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Buttons */
+.interaction-area {
+    min-height: 80px;
+}
+
+.btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 183, 178, 0.4);
+    transition: all 0.3s;
+    outline: none;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: #ff9e99;
+    transform: translateY(-2px) scale(1.02);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 183, 178, 0.7);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(255, 183, 178, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 183, 178, 0);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* Music Toggle Button */
+.music-heart {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #ff8fa3;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    font-size: 24px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Heart Shape CSS */
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/></svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/></svg>");
+    mask-mode: alpha;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    background-color: #ff8fa3;
+    /* Visible color/bg */
+    transition: all 0.3s ease;
+}
+
+@supports not (mask-image: url('')) {
+    .music-heart {
+        border-radius: 50%;
+    }
+}
+
+.music-heart.playing {
+    background-color: #ff4757;
+    animation: heartBeat 1.2s infinite;
+    box-shadow: 0 0 20px #ff4757;
+    /* Glow only works if mask not clipping shadow? Clip removes shadow outside. */
+    filter: drop-shadow(0 0 10px #ff4757);
+    /* This works with mask */
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.2);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.2);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .header-text {
+        font-size: 1.5rem;
+        white-space: normal;
+        /* Better wrap */
+    }
+
+    .card {
+        padding: 30px 15px;
+        width: 90%;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .decor-heart {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Bring hearts closer to card on mobile so they fit */
+    .decor-1 {
+        top: -25px;
+        left: -10px;
+    }
+
+    .decor-2 {
+        top: -35px;
+        right: -10px;
+    }
+}
